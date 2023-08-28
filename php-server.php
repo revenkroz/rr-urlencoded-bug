@@ -1,5 +1,5 @@
 <?php
 
-echo json_encode([
-    'body' => $_POST,
-], JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
+file_put_contents('test_downloaded.png', $_POST['attachments'][0]['data']);
+
+echo 'ok';
