@@ -1,0 +1,23 @@
+version: "3"
+
+server:
+  command: "php rr-worker.php"
+
+http:
+  address: 0.0.0.0:58080
+  raw_body: true
+  pool:
+    num_workers: 1
+    max_jobs: 10
+    destroy_timeout: 0
+
+logs:
+  mode: development
+  channels:
+    http:
+      level: debug # Log all http requests, set to info to disable
+    server:
+      level: info # Everything written to worker stderr is logged
+      mode: raw
+    metrics:
+      level: debug
