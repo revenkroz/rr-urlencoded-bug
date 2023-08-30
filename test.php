@@ -5,7 +5,6 @@ $file = 'test.png';
 $ch = curl_init();
 
 curl_setopt($ch, CURLOPT_URL, 'http://localhost:58080/');
-//curl_setopt($ch, CURLOPT_URL, 'http://localhost:58080/php-server.php');
 //curl_setopt($ch, CURLOPT_URL, 'http://localhost:3000/upload');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([

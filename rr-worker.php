@@ -20,15 +20,24 @@ while (true) {
     }
 
     try {
+        // case when raw_body: true
         $decodedBody = $request->getParsedBody();
-        // OR
-//        $decodedBody = [];
-//        parse_str((string)$request->getBody(), $decodedBody);
+        if (null !== $decodedBody) {
+            $filename = __DIR__ . '/results/result_raw_body_false.png';
+        } else {
+            // case when raw_body: false
+            $decodedBody = [];
+            parse_str((string)$request->getBody(), $decodedBody);
 
-        file_put_contents('test_downloaded.png', $decodedBody['attachments'][0]['data']);
+            $filename = __DIR__ . '/results/result_raw_body_true.png';
+        }
+
+        file_put_contents($filename, $decodedBody['attachments'][0]['data']);
 
         $psr7->respond(new Response(
-            body: (string)$request->getBody(),
+            body: json_encode([
+                'file' => $filename,
+            ], JSON_THROW_ON_ERROR) . PHP_EOL,
         ));
     } catch (\Throwable $e) {
         $psr7->respond(new Response(500, [], $e->getMessage()));
