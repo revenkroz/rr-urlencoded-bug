@@ -20,10 +20,10 @@ while (true) {
     }
 
     try {
-        //$decodedBody = $request->getParsedBody();
+        $decodedBody = $request->getParsedBody();
         // OR
-        $decodedBody = [];
-        parse_str((string)$request->getBody(), $decodedBody);
+//        $decodedBody = [];
+//        parse_str((string)$request->getBody(), $decodedBody);
 
         file_put_contents('test_downloaded.png', $decodedBody['attachments'][0]['data']);
 

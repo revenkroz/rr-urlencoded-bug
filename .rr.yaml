@@ -5,7 +5,7 @@ server:
 
 http:
   address: 0.0.0.0:58080
-  raw_body: true
+  raw_body: false
   pool:
     num_workers: 1
     max_jobs: 10
